@@ -18,15 +18,12 @@ func setupRouter() *gin.Engine {
 		c.JSON(http.StatusOK, "pong")
 	})
 
-	userRepo := controllers.New()
-	r.POST("/users", userRepo.CreateUser)
-	r.GET("/users", userRepo.GetUsers)
-	r.GET("/users/:id", userRepo.GetUser)
-	r.PUT("/users/:id", userRepo.UpdateUser)
-	r.DELETE("/users/:id", userRepo.DeleteUser)
+	commentRepo := controllers.New()
+	r.POST("/comments", commentRepo.AddComment)
+	r.GET("/comments", commentRepo.GetComments)
+	// r.GET("/users/:id", userRepo.GetUser)
+	// r.PUT("/users/:id", userRepo.UpdateUser)
+	// r.DELETE("/users/:id", userRepo.DeleteUser)
 
 	return r
 }
-
-
-
