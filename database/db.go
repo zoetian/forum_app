@@ -2,6 +2,7 @@ package database
 
 import (
 	"fmt"
+	"github.com/zoetian/forum_app/models"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -23,7 +24,7 @@ func InitDb() *gorm.DB {
 
 func connectDB() *gorm.DB {
 	var err error
-	dsn := username + ":" + password + "@tcp" + "(" + dbhost + ":" + dbport + ")/" + dbname + "?parseTime=true&loc=Local"
+	dsn := username + ":" + password + "@tcp(" + dbhost + ":" + dbport + ")/" + dbname + "?parseTime=true&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	if err != nil {
@@ -31,5 +32,6 @@ func connectDB() *gorm.DB {
 		return nil
 	}
 
+	db.AutoMigrate(&models.Comment{})
 	return db
 }

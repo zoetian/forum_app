@@ -4,10 +4,9 @@ import (
 	"errors"
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"gorm-test/database"
-	"gorm-test/models"
+	"github.com/zoetian/forum_app/database"
+	"github.com/zoetian/forum_app/models"
 	"gorm.io/gorm"
-	"io/ioutil"
 	"net/http"
 )
 
@@ -24,9 +23,7 @@ func New() *CommentRepo {
 // POST
 func (repository *CommentRepo) AddComment(c *gin.Context) {
 	var comment models.Comment
-	body, _ := ioutil.ReadAll(c.Request.Body)
-	println(string(body))
-	c.Bind(&comment)
+	c.BindJSON(&comment)
 	fmt.Printf("****** %+v\n", comment)
 	err := models.AddComment(repository.Db, &comment)
 	if err != nil {

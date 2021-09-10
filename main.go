@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"gorm-test/controllers"
+	"github.com/zoetian/forum_app/controllers"
 	"net/http"
 )
 

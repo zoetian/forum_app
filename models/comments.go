@@ -6,11 +6,11 @@ import (
 
 type Comment struct {
 	gorm.Model
-	ID        int64
-	Content   string
-	Timestamp string
-	ParentID  string
-	IsRoot    bool
+	ID        int64  `json: "id" gorm: "primary_key"`
+	Content   string `json: "content"`
+	Timestamp string `json: "timestamp"`
+	ParentID  string `json: "parent_id"`
+	IsRoot    bool   `json: "is_root"`
 }
 
 func AddComment(db *gorm.DB, Comment *Comment) (err error) {
